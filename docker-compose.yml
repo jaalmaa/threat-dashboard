@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+    api:
+        image: api
+        build:
+            context: ./api
+        ports:
+            - 3000:3000
+        volumes:
+            - .:/api
+        environment:
+            - ENV=development
+            - PORT=3000
+            - MONGO_URI=mongodb://<username>:<password>@<mongo_server>:27017/mnemosyne
+            - SECRET_KEY=<CHANGE_THIS>
+    
+    dashboard:
+        image: dashboard
+        build:
+            context: ./dashboard
+        ports:
+            - 8080:3000
+        volumes:
+            - ./dashboard:/usr/src/dashboard
+        environment:
+            - NODE_ENV=development
+        depends_on: 
+            - api
+    
