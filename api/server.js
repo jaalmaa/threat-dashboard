@@ -17,9 +17,7 @@ const hpfeed = db.get('hpfeed');
 const getDBAndEmit = async socket => {
     try {
        let documents = hpfeed.find({})
-       .then(docs => {});
-       console.log(documents);
-       socket.emit("hpfeed", documents);
+       .then(docs => socket.emit("hpfeed", docs));
     } catch (err) {
         console.error(`Error: ${err}`);
     }
@@ -33,7 +31,7 @@ io.on('connection', socket => {
     // set interval
     if (interval) clearInterval(interval);
     interval = setInterval(() => 
-        getDBAndEmit(socket), 500);
+        getDBAndEmit(socket), 1000);
 
     // return initial data
     socket.on('initial_data', () => {
@@ -50,6 +48,6 @@ io.on('connection', socket => {
 });
 
 // run app
-app.listen(port, () => {
+io.listen(port, () => {
     console.log(`Running API on Port ${port}`)
 })
