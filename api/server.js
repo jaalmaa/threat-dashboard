@@ -3,6 +3,7 @@ const express = require('express');
 const db = require('monk')(process.env.MONGO_URI);
 const http = require('http');
 const socketIO = require('socket.io');
+const _ = require('lodash');
 
 // initialize app
 const app = express();
@@ -10,14 +11,19 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 // global variables
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const hpfeed = db.get('hpfeed');
+let db_content;
 
 // function to read from database and emit to connected sockets
+// only emit to sockets if the contents of the db has changed
 const getDBAndEmit = async socket => {
     try {
-       let documents = hpfeed.find({})
-       .then(docs => socket.emit("hpfeed", docs));
+        let content = await hpfeed.find({});
+        if (_.xorWith(content, db_content, _.isEqual).length) {
+            socket.emit("hpfeed", content);
+            db_content = content;
+        };
     } catch (err) {
         console.error(`Error: ${err}`);
     }
@@ -27,19 +33,13 @@ const getDBAndEmit = async socket => {
 let interval;
 io.on('connection', socket => {
     console.log('New Client Connected:' + socket.id);
+    hpfeed.find({})
+    .then(data => socket.emit("hpfeed", data));
 
     // set interval
     if (interval) clearInterval(interval);
     interval = setInterval(() => 
         getDBAndEmit(socket), 1000);
-
-    // return initial data
-    socket.on('initial_data', () => {
-        hpfeed.find({})
-        .then(documents => {
-            io.sockets.emit("get_data", documents);
-        });
-    });
 
     // client disconnect
     socket.on("disconnect", () => {
