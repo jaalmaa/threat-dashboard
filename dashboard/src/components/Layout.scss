@@ -1,0 +1,14 @@
+@import '../stylesheets/variables';
+
+.navbar {
+    padding: 0em 2em 0em;
+    background-color: $navbar;
+}
+.nav {
+    padding: 2em;
+}
+.navlink {
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+}
