@@ -21,7 +21,7 @@ const getDBAndEmit = async socket => {
     try {
         let content = await hpfeed.find({});
         if (_.xorWith(content, db_content, _.isEqual).length) {
-            socket.emit("hpfeed", content);
+            socket.emit("hpfeed", content.reverse());
             db_content = content;
         };
     } catch (err) {
