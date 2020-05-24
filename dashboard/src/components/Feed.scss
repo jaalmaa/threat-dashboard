@@ -4,13 +4,14 @@
 .feed-title {
     font-size: 3.5em;
     font-weight: 500;
-    margin-bottom: 1em;
+    margin-bottom: 0.75em;
 }
 .feed-table {
     margin: auto;
-    border-spacing: 2em 2em;
-    border-collapse: collapse;
+    border-spacing: 0 0.75em;
+    border-collapse: separate;
 }
 .table-title {
     padding-left: 4em;
+    padding-bottom: 0.75em;
 }

@@ -31,7 +31,7 @@ class Layout extends Component {
                 <div className="navbar">
                     <Navbar className="navbar" light expand="md">
                         <NavbarBrand href="/"><b>Jaalma</b></NavbarBrand>
-                        <Nav classname="nav">
+                        <Nav className="nav">
                             <NavItem>
                                 <Link className="navlink" to="/">Dashboard</Link>
                             </NavItem>
