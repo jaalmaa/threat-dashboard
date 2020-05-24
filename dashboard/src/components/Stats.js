@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Statbox from './Statbox';
+import './Stats.scss'
 
 class Stats extends Component {
 
@@ -24,16 +26,16 @@ class Stats extends Component {
     render() {
 
         const attacks_count = this.props.hp_data.length;
-        const urls = this.getUniqueUrls();
-        const hashes = this.getUniqueHashes();
+        const urls_count = this.getUniqueUrls().length;
+        const hashes_count = this.getUniqueHashes().length;
 
         return (
             <>
                 <h1>Stats</h1>
-                <div>
-                    <p>Attacks: { attacks_count }</p>
-                    <p>Urls: { urls.length }</p>
-                    <p>Hashes: { hashes.length }</p>
+                <div className="container">
+                    <Statbox type={'Urls'} data={urls_count} />
+                    <Statbox type={'Attacks'} data={attacks_count} />
+                    <Statbox type={'Hashes'} data={hashes_count} />
                 </div>
                 <hr/>
             </>
