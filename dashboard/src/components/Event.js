@@ -28,14 +28,14 @@ class Event extends Component {
         return (
             <>
                 <tr key={this.props.id} onClick={this.toggle} className="event-row">
-                    <td className="table-col">{ this.props.id }</td>
+                    <td className="table-col">{ this.props.id + 1 }</td>
                     <td className="table-col">{ timestamp }</td>
                     <td className="table-col">{ hashes ? hashes.length : '0' }</td>
                     <td className="table-col">{ urls ? urls.length : '0' }</td>
                     <td className="table-col">{ commands ? commands.length : '0' }</td>
                 </tr>
 
-                {/* @TODO move to separate component */}
+                {/* @TODO: move to separate component */}
                 <Modal isOpen={this.state.modal} toggle={this.toggle} size={'lg'}>
                     <ModalHeader toggle={this.toggle}>Event Info</ModalHeader>
                     <ModalBody>
