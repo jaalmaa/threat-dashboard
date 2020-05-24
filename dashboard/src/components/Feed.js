@@ -22,7 +22,6 @@ class Feed extends Component {
                             <th className="table-title">Command History Length</th>
                         </tr>
                     </thead>
-                    <hr className="table-line" />
                     <tbody>
                         { data_feed }
                     </tbody>
