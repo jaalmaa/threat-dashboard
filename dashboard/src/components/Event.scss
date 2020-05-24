@@ -1,9 +1,11 @@
+@import '../stylesheets/variables';
+
 .event-row {
     cursor: pointer;
-    padding-top: 2em;
 }
 .event-row:hover {
-    color: darkgray;
+    background-color: $event-hover;
+    opacity: 50%;
 }
 .table-col {
     padding-left: 4em;
