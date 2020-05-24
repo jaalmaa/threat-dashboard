@@ -34,7 +34,7 @@ let interval;
 io.on('connection', socket => {
     console.log('New Client Connected:' + socket.id);
     hpfeed.find({})
-    .then(data => socket.emit("hpfeed", data));
+    .then(data => socket.emit("hpfeed", data.reverse()));
 
     // set interval
     if (interval) clearInterval(interval);
