@@ -21,7 +21,7 @@ const getDBAndEmit = async socket => {
     try {
         let content = await hpfeed.find({});
         if (_.xorWith(content, db_content, _.isEqual).length) {
-            socket.emit("hpfeed", content.reverse());
+            socket.emit("hpfeed", content.reverse().slice(0,17));
             db_content = content;
         };
     } catch (err) {
@@ -34,7 +34,7 @@ let interval;
 io.on('connection', socket => {
     console.log('New Client Connected:' + socket.id);
     hpfeed.find({})
-    .then(data => socket.emit("hpfeed", data.reverse()));
+    .then(data => socket.emit("hpfeed", data.reverse().slice(0,17)));
 
     // set interval
     if (interval) clearInterval(interval);
