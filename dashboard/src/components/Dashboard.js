@@ -7,7 +7,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="dashboard-container">
-                <Stats hp_data={this.props.hp_data} />
+                <Stats hp_data={this.props.hp_data} aggregates={this.props.aggregates} />
             </div>
         )
     }

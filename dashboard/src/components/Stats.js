@@ -13,21 +13,22 @@ class Stats extends Component {
         }
     }
 
-    getUniqueUrls = () => {
-        const urls_list = this.props.hp_data ? this.props.hp_data.map(event => event.payload.urls).filter(urls => urls.length) : [];
-        return urls_list.flat();
-    }
+    // getUniqueUrls = () => {
+    //     const urls_list = this.props.hp_data ? this.props.hp_data.map(event => event.payload.urls).filter(urls => urls.length) : [];
+    //     return urls_list.flat();
+    // }
 
-    getUniqueHashes = () => {
-        const hashes_list = this.props.hp_data ? this.props.hp_data.map(event => event.payload.hashes).filter(hashes => hashes.length): [];
-        return hashes_list.flat();
-    }
+    // getUniqueHashes = () => {
+    //     const hashes_list = this.props.hp_data ? this.props.hp_data.map(event => event.payload.hashes).filter(hashes => hashes.length): [];
+    //     return hashes_list.flat();
+    // }
 
     render() {
+        console.log('aggregates: ' + this.props.aggregates);
 
-        const attacks_count = this.props.hp_data.length;
-        const urls_count = this.getUniqueUrls().length;
-        const hashes_count = this.getUniqueHashes().length;
+        const attacks_count = this.props.aggregates.attacks ? this.props.aggregates.attacks : 0;
+        const urls_count = this.props.aggregates.urls ? this.props.aggregates.urls : 0;
+        const hashes_count = this.props.aggregates.hashes ? this.props.aggregates.hashes: 0;
 
         return (
             <>
