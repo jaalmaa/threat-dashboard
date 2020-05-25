@@ -4,7 +4,6 @@ import Event from './Event';
 import './Feed.scss'
 
 class Feed extends Component {
-    /* Layout all of the events into a table */
 
     render() {
         const hp_data = this.props.hp_data;

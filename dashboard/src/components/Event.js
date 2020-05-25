@@ -30,8 +30,8 @@ class Event extends Component {
                 <tr key={this.props.id} onClick={this.toggle} className="event-row">
                     <td className="table-col">{ this.props.id + 1 }</td>
                     <td className="table-col">{ timestamp }</td>
-                    <td className={"table-col", (urls.length != 0 ? "highlight" : '')}>{ urls.length }</td>
-                    <td className={"table-col", (hashes.length != 0 ? "highlight" : '')}>{ hashes.length }</td>
+                    <td className={"table-col" + (urls.length !== 0 ? " highlight" : '')}>{ urls.length }</td>
+                    <td className={"table-col" + (urls.length !== 0 ? " highlight" : '')}>{ hashes.length }</td>
                     <td className="table-col">{ commands.length }</td>
                 </tr>
 
@@ -50,11 +50,11 @@ class Event extends Component {
                                     
                         {/* @TODO: move to separate component */}
                         <b>Urls identified: </b>
-                        <p>{ urls ? urls: 'None' }</p>
+                        { urls.length ? urls.map(url => <p className="p-modal">{ url }</p>) : <p>None</p>}
 
                         {/* @TODO: move to separate component */}
                         <b>File hashes: </b>
-                        <p>{ hashes ? hashes: 'None' }</p>
+                        { hashes.length ? hashes.map(hash => <p className="p-modal">{ hash }</p>) : <p>None</p>}
                     </ModalBody>
                     <ModalFooter>
                         <Button color="secondary" onClick={this.toggle}>Close</Button>
