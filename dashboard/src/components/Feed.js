@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Spinner } from 'reactstrap';
 import Event from './Event';
-import './Feed.scss'
+import './Feed.scss';
 
-class Feed extends Component {
+const Feed = props => {
 
-    render() {
-        const hp_data = this.props.hp_data;
-        const data_feed = hp_data ? hp_data.map((data, index) => <Event key={index} id={index} session={data} />) : <Spinner color="secondary" />;
-        return (
+    if (!props.hp_data) {
+        return <Spinner color="secondary" />;
+    }
+    else {
+        return(
             <div className="feed-container">
                 <h1 className="feed-title">Feed</h1>
                 <table className="feed-table">
@@ -22,12 +23,12 @@ class Feed extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { data_feed }
+                        { props.hp_data.map((data, index) => <Event key={index} id={index} session={data} />) }
                     </tbody>
                 </table>
             </div>
-        )
-    };
+        );
+    }
 };
 
 export default Feed;
