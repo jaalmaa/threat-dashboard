@@ -1,18 +1,5 @@
 @import '../stylesheets/variables';
 
-.event-row {
-    cursor: pointer;
-}
-.event-row:hover {
-    background-color: $event-hover;
-    opacity: 50%;
-}
-.table-col {
-    padding-left: 4em;
-}
 .highlight {
     font-weight: bold;
-}
-.p-modal {
-    margin: 0.25em;
 }

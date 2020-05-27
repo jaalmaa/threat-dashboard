@@ -1,33 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Spinner } from 'reactstrap';
 import Event from './Event';
-import './Feed.scss'
+import './Feed.scss';
 
-class Feed extends Component {
+const Feed = props => {
 
-    render() {
-        const hp_data = this.props.hp_data;
-        const data_feed = hp_data ? hp_data.map((data, index) => <Event key={index} id={index} session={data} />) : <Spinner color="secondary" />;
-        return (
-            <div className="feed-container">
-                <h1 className="feed-title">Feed</h1>
-                <table className="feed-table">
-                    <thead>
-                        <tr>
-                            <th className="table-title">#</th>
-                            <th className="table-title">Timestamp</th>
-                            <th className="table-title">Urls Identified</th>
-                            <th className="table-title">File Hashes Identified</th>
-                            <th className="table-title">Command History Length</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { data_feed }
-                    </tbody>
-                </table>
+    if (!props.hp_data) {
+        return <Spinner color="secondary" />;
+    }
+    else {
+        return(
+            <div>
+                <h1 className="feed-title">Event Feed</h1>
+                <div className="feed-headings">
+                    <div>#</div>
+                    <div>Timestamp</div>
+                    <div>Urls Identified</div>
+                    <div>File Hashes Identified</div>
+                    <div>Command History Length</div>
+                </div>
+                    { props.hp_data.map((data, index) => <Event key={index} id={index} session={data} />) }
             </div>
-        )
-    };
+        );
+    }
 };
 
 export default Feed;
