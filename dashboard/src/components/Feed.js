@@ -11,15 +11,15 @@ const Feed = props => {
     else {
         return(
             <div>
-            <h1 className="feed-title">Event Feed</h1>
-            <div className="feed-headings">
-                <div>#</div>
-                <div>Timestamp</div>
-                <div>Urls Identified</div>
-                <div>File Hashes Identified</div>
-                <div>Command History Length</div>
-            </div>
-                { props.hp_data.map((data, index) => <Event key={index} id={index} session={data} />) }
+                <h1 className="feed-title">Event Feed</h1>
+                <div className="feed-headings">
+                    <div>#</div>
+                    <div>Timestamp</div>
+                    <div>Urls Identified</div>
+                    <div>File Hashes Identified</div>
+                    <div>Command History Length</div>
+                </div>
+                    { props.hp_data.map((data, index) => <Event key={index} id={index} session={data} />) }
             </div>
         );
     }

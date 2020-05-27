@@ -7,17 +7,16 @@ const EventModal = (props) => {
             <ModalHeader toggle={props.toggle}>Event Info</ModalHeader>
             <ModalBody>
                 <b>Credentials Used: </b>
-                <code>{ props.data.credentials }</code>
-                <br />
+                <div>{ props.data.credentials }</div>
                     
                 <b>Command History:</b>
-                <p>{ props.data.commands }</p>
+                { props.data.commands }
                                     
                 <b>Urls identified: </b>
-                { props.data.urls.length ? props.data.urls.map(url => <p>{ url }</p>) : <p>None</p>}
+                { props.data.urls.length ? props.data.urls.map((url, index) => <div key={index}>{ url }</div>) : <p>None</p>}
 
                 <b>File hashes: </b>
-                { props.data.hashes.length ? props.data.hashes.map(hash => <p>{ hash }</p>) : <p>None</p>}
+                { props.data.hashes.length ? props.data.hashes.map((hash, index) => <div key={index}>{ hash }</div>) : <p>None</p>}
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={props.toggle}>Close</Button>

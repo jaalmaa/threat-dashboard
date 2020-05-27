@@ -17,12 +17,14 @@
     cursor: pointer;
 }
 .feed-container:hover {
-    background-color: $event-hover;
-    opacity: 50%;
+    background-color: rgba($event-hover, 0.5);
+}
+.feed-container:first-child {
+    color: red;
 }
 .feed-title {
     margin-top: 1em;
-    font-size: 3.5em;
+    font-size: 3em;
     font-weight: 500;
     margin-bottom: 0.75em;
 }
