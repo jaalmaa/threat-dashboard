@@ -1,7 +1,27 @@
+@import '../stylesheets/variables';
+
+.feed-headings {
+    margin: 1em 10em 1em 10em;
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    grid-template-rows: 1fr;
+}
 .feed-container {
-    margin-top: 5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-left: 10em;
+    margin-right: 10em;
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    grid-template-rows: 1fr;
+    cursor: pointer;
+}
+.feed-container:hover {
+    background-color: $event-hover;
+    opacity: 50%;
 }
 .feed-title {
+    margin-top: 1em;
     font-size: 3.5em;
     font-weight: 500;
     margin-bottom: 0.75em;

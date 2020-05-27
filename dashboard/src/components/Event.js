@@ -34,16 +34,14 @@ class Event extends Component {
         };
         
         return (
-            <>
-                <tr onClick={this.toggle} className="event-row">
-                    <td className="table-col">{ this.props.id + 1 }</td>
-                    <td className="table-col">{ timestamp }</td>
-                    <td className={"table-col" + (urls.length !== 0 ? " highlight" : '')}>{ urls.length }</td>
-                    <td className={"table-col" + (urls.length !== 0 ? " highlight" : '')}>{ hashes.length }</td>
-                    <td className="table-col">{ commands.length }</td>
-                </tr>
+            <div className="feed-container" onClick={this.toggle}>
+                <div>{this.props.id + 1}</div>
+                <div>{ timestamp }</div>
+                <div className={ urls.length !== 0 ? 'highlight' : '' }>{ urls.length }</div>
+                <div className={ hashes.length !== 0 ? 'highlight' : '' }>{ hashes.length }</div>
+                <div>{ commands.length }</div>
                 <EventModal data={modal_props} toggle={this.toggle} />
-            </>
+            </div>
         )
     }
 }
