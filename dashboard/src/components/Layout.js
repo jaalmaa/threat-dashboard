@@ -38,9 +38,9 @@ class Layout extends Component {
                             <NavItem>
                                 <Link className="navlink" to="/">Dashboard</Link>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <Link className="navlink" to="/feed">Feed</Link>
-                            </NavItem>
+                            </NavItem> */}
                         </Nav>
                     </Navbar>
                     <hr />
@@ -48,10 +48,11 @@ class Layout extends Component {
                 <Switch>
                     <Route exact path='/'>
                         <Dashboard hp_data={this.state.hpfeed} aggregates={this.state.aggregates} />
-                    </Route>
-                    <Route path="/feed">
                         <Feed hp_data={this.state.hpfeed} />
                     </Route>
+                    {/* <Route path="/feed">
+                        <Feed hp_data={this.state.hpfeed} />
+                    </Route> */}
                 </Switch>
             </Router>
         )
