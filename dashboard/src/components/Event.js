@@ -19,6 +19,8 @@ class Event extends Component {
 
         const timestamp = new Date(Date.parse(this.props.session.timestamp)).toLocaleString();
         const urls = this.props.session.payload.urls;
+        const src_ip = this.props.session.payload.peerIP;
+        console.log(this.props.session.payload.peerIP);
         const hashes = this.props.session.payload.hashes;
         const credentials = this.props.session.payload.loggedin ? <div>{this.props.session.payload.loggedin[0]}:{this.props.session.payload.loggedin[1]}</div> : 'null';
         const commands = this.props.session.payload.commands ? this.props.session.payload.commands
@@ -34,9 +36,10 @@ class Event extends Component {
         };
         
         return (
-            <div className="feed-container" onClick={this.toggle}>
+            <div onClick={this.toggle} className="feed-container">
                     <div>{this.props.id + 1}</div>
                     <div>{ timestamp }</div>
+                    <div>{ src_ip }</div>
                     <div className={ urls.length !== 0 ? 'highlight' : '' }>{ urls.length }</div>
                     <div className={ hashes.length !== 0 ? 'highlight' : '' }>{ hashes.length }</div>
                     <div>{ commands.length }</div>
