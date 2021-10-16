@@ -12,7 +12,7 @@ const Feed = props => {
         return(
             <div>
                 <h1 className="feed-title">Event Feed</h1>
-                <div className="feed-container">
+                <div className="feed-header">
                     <div>#</div>
                     <div>Timestamp</div>
                     <div>Source IP</div>
