@@ -18,6 +18,8 @@ services:
         image: dashboard
         build:
             context: ./dashboard
+            args:
+                REACT_APP_API_URI: "<URL FOR SOCKET.IO IN SERVER.JS>"
         ports:
             - 8080:3000
         volumes:
