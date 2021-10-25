@@ -1,0 +1,34 @@
+@import '../stylesheets/variables';
+
+.feed-container, .feed-header {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-left: 10em;
+    margin-right: 10em;
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 0.4fr 0.3fr 0.3fr 0.3fr;
+    grid-template-rows: 1fr;
+}
+
+.feed-container:hover {
+    background-color: rgba($event-hover, 0.5);
+    cursor: pointer;
+}
+
+.feed-title {
+    margin-top: 1em;
+    font-size: 3em;
+    font-weight: 500;
+    margin-bottom: 0.75em;
+}
+
+.feed-table {
+    margin: auto;
+    border-spacing: 0 0.75em;
+    border-collapse: separate;
+}
+
+.table-title {
+    padding-left: 4em;
+    padding-bottom: 0.75em;
+}

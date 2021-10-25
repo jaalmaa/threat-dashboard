@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "description": "API Service for Threat Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "npm start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaalmaa/threat-dashboard.git"
+  },
+  "author": "jaalmaa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaalmaa/threat-dashboard/issues"
+  },
+  "homepage": "https://github.com/jaalmaa/threat-dashboard#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "monk": "^7.1.1",
+    "package.json": "^2.0.1",
+    "socket.io": "^2.3.0"
+  }
+}
