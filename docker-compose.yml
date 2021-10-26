@@ -26,3 +26,14 @@ services:
             - NODE_ENV=development
         depends_on: 
             - api
+
+    analytics:
+        image: analytics
+        build:
+            context: ./analytics
+        ports:
+            - 5000:5000
+        volumes:
+            - ./analytics
+        depends_on:
+            - api
