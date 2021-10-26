@@ -18,6 +18,8 @@ services:
         image: dashboard
         build:
             context: ./dashboard
+            args:
+                REACT_APP_API_URI: "http://192.168.0.21:3001"
         ports:
             - 8080:3000
         volumes:
@@ -25,6 +27,7 @@ services:
         environment:
             - NODE_ENV=development
         depends_on: 
+<<<<<<< HEAD
             - api
 
     analytics:
@@ -36,4 +39,6 @@ services:
         volumes:
             - ./analytics
         depends_on:
+=======
+>>>>>>> master
             - api

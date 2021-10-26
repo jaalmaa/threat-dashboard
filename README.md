@@ -7,5 +7,3 @@ This is a cyber threat dashboard showing data and intel collected from SSH honey
 ## Requirements
 
 ## Installation
-
-Install Docker and Docker-Compose

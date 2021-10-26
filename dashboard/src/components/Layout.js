@@ -13,7 +13,11 @@ class Layout extends Component {
         this.state = {
             hpfeed: false,
             aggregates: false,
+<<<<<<< HEAD
             endpoint: 'http://127.0.0.1:3001'
+=======
+            endpoint: process.env.REACT_APP_API_URI
+>>>>>>> master
         };
     }
 
@@ -33,9 +37,9 @@ class Layout extends Component {
             <Router>
                 <div className="navbar">
                     <Navbar className="navbar" light expand="md">
-                        <NavbarBrand href="/"><b>Jaalma</b></NavbarBrand>
+                        <NavbarBrand href="/"><b>Threat Dashboard</b></NavbarBrand>
                         <Nav className="nav">
-                            <NavItem>
+                            {/* <NavItem>
                                 <Link className="navlink" to="/">Dashboard</Link>
                             </NavItem>
                             {/* <NavItem>
