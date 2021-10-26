@@ -13,11 +13,7 @@ class Layout extends Component {
         this.state = {
             hpfeed: false,
             aggregates: false,
-<<<<<<< HEAD
-            endpoint: 'http://127.0.0.1:3001'
-=======
             endpoint: process.env.REACT_APP_API_URI
->>>>>>> master
         };
     }
 

@@ -36,6 +36,6 @@ services:
         ports:
             - 5000:5000
         volumes:
-            - ./analytics
+            - ./analytics:/usr/src/analytics
         depends_on:
             - api
