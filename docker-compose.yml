@@ -27,7 +27,6 @@ services:
         environment:
             - NODE_ENV=development
         depends_on: 
-<<<<<<< HEAD
             - api
 
     analytics:
@@ -39,6 +38,4 @@ services:
         volumes:
             - ./analytics
         depends_on:
-=======
->>>>>>> master
             - api
