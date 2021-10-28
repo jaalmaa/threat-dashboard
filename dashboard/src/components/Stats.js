@@ -21,7 +21,7 @@ class Stats extends Component {
 
         return (
             <>
-                <h1>Stats</h1>
+                <h1>Stats (Last 24 Hours)</h1>
                 <div className="container">
                     <Statbox type={'Urls'} data={urls_count} />
                     <Statbox type={'Attacks'} data={attacks_count} />
