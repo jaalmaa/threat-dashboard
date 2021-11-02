@@ -21,7 +21,6 @@ def root():
 @expects_json(json.load(open(os.path.abspath('schemas/interaction.schema.json'))))
 def analyze():
     request_data = request.get_json()
-    honeypot_type = request_data['honeypot_type']
     interaction_data = request_data['honeypot_data']
     detections = yara_analysis.analyze_interaction(interaction_data=str(interaction_data), ruleset = signature_ruleset)
     return jsonify({

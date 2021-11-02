@@ -12,6 +12,7 @@ services:
         environment:
             - PORT=3001
             - MONGO_URI=mongodb://192.168.0.37:27017/mnemosyne
+            - INTERACTION_URI=http://192.168.0.21:5000
             - NODE_ENV=development
     
     dashboard:

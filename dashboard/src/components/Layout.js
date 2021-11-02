@@ -21,7 +21,8 @@ class Layout extends Component {
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint);
         socket.on("hpfeed", data => {
-            this.setState({ hpfeed: data });
+            this.setState({ hpfeed: data.sort((a, b) => { return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime() })});
+            console.log(this.state.hpfeed);
         });
         socket.on("aggregates", data => {
             this.setState({ aggregates: data });
@@ -48,7 +49,6 @@ class Layout extends Component {
                 <Switch>
                     <Route exact path='/'>
                         <Dashboard hp_data={this.state.hpfeed} aggregates={this.state.aggregates} />
-                        <Feed hp_data={this.state.hpfeed} />
                     </Route>
                     {/* <Route path="/feed">
                         <Feed hp_data={this.state.hpfeed} />
