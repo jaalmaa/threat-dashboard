@@ -58,7 +58,7 @@ const getDBAndEmit = async sockets => {
 const generateInteractionDataWithDetections = async interactionData => {
     const interactionDataToSend = [];
     await Promise.all(interactionData.map(async item => {
-        itemCopy = Object.assign({}, item);
+        let itemCopy = Object.assign({}, item);
         const detections = await getInteractionAnalysis(itemCopy);
         itemCopy['detections'] = detections;
         interactionDataToSend.push(itemCopy);

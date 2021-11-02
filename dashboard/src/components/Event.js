@@ -25,12 +25,14 @@ class Event extends Component {
         const commands = this.props.session.payload.commands ? this.props.session.payload.commands
             .filter(command => { return command; })
             .map((command, index) => <div key={index}>{command}</div>) : <p>null</p>;
+        const detections = this.props.session.detections;
 
         const modal_props = {
             urls: urls,
             hashes: hashes,
             credentials: credentials,
             commands: commands,
+            detections: detections,
             visible: this.state.modal_visible
         };
         

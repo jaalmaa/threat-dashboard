@@ -19,6 +19,9 @@ const EventModal = (props) => {
 
                     <b>File hashes: </b>
                     <div>{ props.data.hashes.length ? props.data.hashes.map((hash, index) => <div key={index}>{ hash }</div>) : <p>None</p>}</div>
+
+                    <b>Detections: </b>
+                    <div>{ props.data.detections.length ? props.data.detections.map((detection, index) => <div key={index}>{ detection.split("_").slice(0, -1).join(".") }</div>) : <p>None</p> }</div>
                 </div>
             </ModalBody>
             <ModalFooter>
