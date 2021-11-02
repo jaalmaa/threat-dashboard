@@ -1,8 +1,7 @@
 {
     "type": "object",
     "properties": {
-        "honeypot_type": {"type": "string"},
         "honeypot_data": {"type": "object"}
         },
-    "required": ["honeypot_type", "honeypot_data"]
+    "required": ["honeypot_data"]
 }

@@ -8,7 +8,7 @@ rule T1059_006_python_cowrie {
 
     strings:
         $source = "cowrie.sessions"
-        $re1 = /python/ // matches on python/python3 command within commands
+        $s1 = "python" // matches on python/python3 command within commands
 
     condition:
         $source and $re1

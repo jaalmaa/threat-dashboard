@@ -22,9 +22,11 @@ class Layout extends Component {
         const socket = socketIOClient(endpoint);
         socket.on("hpfeed", data => {
             this.setState({ hpfeed: data });
+            console.log(this.state.hpfeed);
         });
         socket.on("aggregates", data => {
             this.setState({ aggregates: data });
+            console.log(this.state.aggregates);
         })
     }
 

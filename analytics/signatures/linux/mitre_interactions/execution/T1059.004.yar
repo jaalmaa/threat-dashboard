@@ -8,8 +8,7 @@ rule T1059_004_unix_shell_cowrie {
 
     strings:
         $source = "cowrie.sessions"
-        $re1 = /(\bsh|ash|zsh|bash|dash)/
 
     condition:
-        $source and 1 of ($re1)
+        $source
 }
