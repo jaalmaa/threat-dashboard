@@ -1,0 +1,28 @@
+{
+"type": "object",
+"properties": {
+    "_id": {"type": "string"},
+    "ident": {"type": "string"},
+    "timestamp": {"type": "string"},
+    "normalized": {"type": "boolean"},
+    "payload": {
+        "peerIP": {"type": "string"},
+        "commands": {"type": "array"},
+        "loggedin": {"type": "array"},
+        "protocol": {"type": "string"},
+        "urls": {"type": "array"},
+        "ttylog": {"type": "string"},
+        "hostPort": {"type": "integer"},
+        "peerPort": {"type": "integer"},
+        "session": {"type": "string"},
+        "startTime": {"type": "string"},
+        "hostIP": {"type": "string"},
+        "credentials": {"type": "array"},
+        "hashes": {"type": "array"},
+        "endTime": {"type": "string"},
+        "version": {"type": "string"},
+        "unknownCommands": {"type": "array"}
+        },
+    "channel": {"type": "string"}
+    }
+}

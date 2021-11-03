@@ -12,6 +12,7 @@ services:
         environment:
             - PORT=3001
             - MONGO_URI=mongodb://192.168.0.37:27017/mnemosyne
+            - INTERACTION_URI=http://192.168.0.21:5000
             - NODE_ENV=development
     
     dashboard:
@@ -27,4 +28,15 @@ services:
         environment:
             - NODE_ENV=development
         depends_on: 
+            - api
+
+    analytics:
+        image: analytics
+        build:
+            context: ./analytics
+        ports:
+            - 5000:5000
+        volumes:
+            - ./analytics:/usr/src/analytics
+        depends_on:
             - api

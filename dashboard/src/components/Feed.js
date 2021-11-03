@@ -11,7 +11,7 @@ const Feed = props => {
     else {
         return(
             <div>
-                <h1 className="feed-title">Event Feed</h1>
+                <h1 className="feed-title">Event Feed (Most Recent)</h1>
                 <div className="feed-header">
                     <div>#</div>
                     <div>Timestamp</div>
