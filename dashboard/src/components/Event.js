@@ -17,12 +17,12 @@ class Event extends Component {
 
     render() {
 
-        const timestamp = new Date(Date.parse(this.props.session.timestamp)).toLocaleString();
-        const urls = this.props.session.payload.urls;
-        const src_ip = this.props.session.payload.peerIP;
-        const hashes = this.props.session.payload.hashes;
-        const credentials = this.props.session.payload.loggedin ? <div>{this.props.session.payload.loggedin[0]}:{this.props.session.payload.loggedin[1]}</div> : 'null';
-        const commands = this.props.session.payload.commands ? this.props.session.payload.commands
+        const timestamp = new Date(Date.parse(this.props.session.startTime)).toLocaleString();
+        const urls = this.props.session.url;
+        const src_ip = this.props.session.src_ip;
+        const hashes = this.props.session.shasum;
+        const credentials = this.props.session.credentials ? <div>{this.props.session.credentials.username}:{this.props.session.credentials.password}</div> : 'null';
+        const commands = this.props.session.commands ? this.props.session.commands
             .filter(command => { return command; })
             .map((command, index) => <div key={index}>{command}</div>) : <p>null</p>;
         const detections = this.props.session.detections;

@@ -11,5 +11,5 @@ rule T1059_006_python_cowrie {
         $s1 = "python" // matches on python/python3 command within commands
 
     condition:
-        $source and $re1
+        $source and $s1
 }

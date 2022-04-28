@@ -21,8 +21,10 @@ class Layout extends Component {
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint);
         socket.on("hpfeed", data => {
-            this.setState({ hpfeed: data.sort((a, b) => { return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime() })});
-            console.log(this.state.hpfeed);
+            console.log(data);
+            if(data) {
+                this.setState({ hpfeed: data.sort((a, b) => { return new Date(b.startTime).getTime() - new Date(a.startTime).getTime() })});
+            }
         });
         socket.on("aggregates", data => {
             this.setState({ aggregates: data });
