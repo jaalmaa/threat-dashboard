@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav } from 'reactstrap';
 import socketIOClient from 'socket.io-client';
 import Dashboard from './Dashboard';
-import Feed from './Feed';
+import About from './About';
 import './Layout.scss'
 
 class Layout extends Component {
@@ -36,7 +36,8 @@ class Layout extends Component {
             <Router>
                 <div className="navbar">
                     <Navbar className="navbar" light expand="md">
-                        <NavbarBrand href="/"><b>Threat Dashboard</b></NavbarBrand>
+                        <NavbarBrand href="/dashboard"><b>Threat Dashboard</b></NavbarBrand>
+                        <NavbarBrand href="/about"><b>About</b></NavbarBrand>
                         <Nav className="nav">
                             {/* <NavItem>
                                 <Link className="navlink" to="/">Dashboard</Link>
@@ -49,7 +50,10 @@ class Layout extends Component {
                     <hr />
                 </div>
                 <Switch>
-                    <Route exact path='/'>
+                    <Route exact path={['/', '/about']}>
+                        <About />
+                    </Route>
+                    <Route exact path='/dashboard'>
                         <Dashboard hp_data={this.state.hpfeed} aggregates={this.state.aggregates} />
                     </Route>
                     {/* <Route path="/feed">
