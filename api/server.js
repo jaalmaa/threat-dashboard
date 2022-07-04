@@ -18,9 +18,11 @@ const getAggregates = data => {
     console.log(data);
     let total_attacks = data.length;
     console.log(total_attacks);
-    let total_urls = data.map(event => event.url).filter(urls => urls.length).length;
+    let url_collections = data.map(event => event.url).filter(urls => urls.length); /* Forming array of arrays from attacks where URLs were seen */
+    let total_urls = [].concat.apply([], url_collections).length /* Calculating total number of elements. Does not check if URL is unique or has been seen before */
     console.log(total_urls);
-    let total_hashes = data.map(event => event.shasum).filter(hashes => hashes.length).length;
+    let hash_collections = data.map(event => event.shasum).filter(hashes => hashes.length);
+    let total_hashes = [].concat.apply([], hash_collections).length
     console.log(total_hashes);
     return {
         attacks: total_attacks,
