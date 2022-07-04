@@ -1,1 +1,2 @@
 signatures/compiled/*
+__pycache__/*

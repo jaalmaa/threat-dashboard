@@ -1,3 +1,12 @@
 .modal-body {
     word-wrap: break-word;
 }
+
+.indicator {
+    color: red;
+}
+
+.indicator:hover {
+    color: black;
+    font-weight: bolder;
+}

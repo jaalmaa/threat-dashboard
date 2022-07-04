@@ -9,16 +9,16 @@ const EventModal = (props) => {
             <ModalBody>
                 <div className="modal-body">
                     <b>Credentials Used: </b>
-                    <div>{ props.data.credentials }</div>
+                    <div className="indicator">{ props.data.credentials }</div>
                         
                     <b>Command History:</b>
-                    <div>{ props.data.commands }</div>
+                    <div>{ props.data.commands.length ? props.data.commands.map((command, index) => <div className="indicator" key={index}>{ command }</div>) : <p>None</p> }</div>
                                         
                     <b>Urls identified: </b>
-                    <div>{ props.data.urls.length ? props.data.urls.map((url, index) => <div key={index}>{ url }</div>) : <p>None</p>}</div>
+                    <div>{ props.data.urls.length ? props.data.urls.map((url, index) => <div className="indicator" key={index}>{ url }</div>) : <p>None</p>}</div>
 
                     <b>File hashes: </b>
-                    <div>{ props.data.hashes.length ? props.data.hashes.map((hash, index) => <div key={index}>{ hash }</div>) : <p>None</p>}</div>
+                    <div>{ props.data.hashes.length ? props.data.hashes.map((hash, index) => <div className="indicator" key={index}>{ hash }</div>) : <p>None</p>}</div>
 
                     {/* <b>Detections: </b>
                     <div>{ props.data.detections.length ? props.data.detections.map((detection, index) => <div key={index}>{ detection.split("_").slice(0, -1).join(".") }</div>) : <p>None</p> }</div> */}
