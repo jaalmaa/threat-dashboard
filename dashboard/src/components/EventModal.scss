@@ -3,10 +3,12 @@
 }
 
 .indicator {
-    color: red;
+    font-family: monospace;
+    color: #B32000;
 }
 
 .indicator:hover {
+    font-family: monospace;
     color: black;
     font-weight: bolder;
 }

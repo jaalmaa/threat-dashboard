@@ -23,9 +23,9 @@ class Stats extends Component {
             <>
                 <h1>Stats (Last 24 Hours)</h1>
                 <div className="container">
-                    <Statbox type={'Urls'} data={urls_count} />
-                    <Statbox type={'Attacks'} data={attacks_count} />
-                    <Statbox type={'Hashes'} data={hashes_count} />
+                    <Statbox type={'Urls'} data={urls_count} view={2} />
+                    <Statbox type={'Attacks'} data={attacks_count} view={1} />
+                    <Statbox type={'Hashes'} data={hashes_count} view={3} />
                 </div>
                 <hr/>
             </>

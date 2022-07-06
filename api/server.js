@@ -15,7 +15,7 @@ const maxInteractionCount = 20;
 let currentInteractionData = [];
 
 const getAggregates = data => {
-    console.log(data);
+    /*console.log(data);*/
     let total_attacks = data.length;
     console.log(total_attacks);
     let url_collections = data.map(event => event.url).filter(urls => urls.length); /* Forming array of arrays from attacks where URLs were seen */

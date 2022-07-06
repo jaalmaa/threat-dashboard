@@ -10,6 +10,16 @@
     grid-template-rows: 1fr;
 }
 
+.view-header {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-left: 10em;
+    margin-right: 10em;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-rows: 1fr;
+}
+
 .feed-container:hover {
     background-color: rgba($event-hover, 0.5);
     cursor: pointer;
