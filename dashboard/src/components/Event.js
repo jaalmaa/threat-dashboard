@@ -42,7 +42,7 @@ class Event extends Component {
                     <div>{ timestamp }</div>
                     <div>{ src_ip }</div>
                     <div className={ urls.length !== 0 ? 'highlight' : '' }>{ urls.length }</div>
-                    <div className={ hashes.length !== 0 ? 'highlight' : '' }>{ hashes.length }</div>
+                    <div className={ hashes.length !== 0 ? 'highlight' : '' }>{ hashes.filter(string => {return string !== '';}).length }</div>
                     <div>{ commands.length }</div>
                     <EventModal data={modal_props} toggle={this.toggle} />
             </div>
