@@ -22,7 +22,7 @@ const getAggregates = data => {
     let total_urls = [].concat.apply([], url_collections).length /* Calculating total number of elements. Does not check if URL is unique or has been seen before */
     console.log(total_urls);
     let hash_collections = data.map(event => event.shasum).filter(hashes => hashes.length);
-    let total_hashes = [].concat.apply([], hash_collections).length
+    let total_hashes = [].concat.apply([], hash_collections).filter(string => {return string !== '';}).length;
     console.log(total_hashes);
     return {
         attacks: total_attacks,
