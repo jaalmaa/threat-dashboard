@@ -11,6 +11,7 @@ class Hashes extends Component {
         if (hashes.length !== 0) {
             return (
                 <div className="view-container">
+                    <div>{this.props.id + 1}</div>
                     <div>{ hashes.length ? timestamp : null}</div>
                     <div>{ hashes.length ? hashes.map((hash, index) => <div className="technical-stat" key={index}>{ hash }</div>) : null}</div>
                 </div>

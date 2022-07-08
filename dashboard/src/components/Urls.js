@@ -11,6 +11,7 @@ class Urls extends Component {
         if (urls.length !== 0) {
             return (
                 <div className="view-container">
+                    <div>{this.props.id + 1}</div>
                     <div>{ urls.length ? timestamp : null}</div>
                     <div>{ urls.length ? urls.map((url, index) => <div className="technical-stat" key={index}>{ url }</div>) : null}</div>
                 </div>

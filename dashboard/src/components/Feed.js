@@ -38,6 +38,7 @@ const Feed = props => {
                     <h1 className="feed-title">URL Feed</h1>
 
                     <div className="view-header">
+                        <div>#</div>
                         <div>Timestamp</div>
                         <div>URL</div>
                     </div>
@@ -53,6 +54,7 @@ const Feed = props => {
                     <h1 className="feed-title">Hash Feed</h1>
 
                     <div className="view-header">
+                        <div>#</div>
                         <div>Timestamp</div>
                         <div>Hash</div>
                     </div>
