@@ -27,6 +27,7 @@ services:
             - ./dashboard:/usr/src/dashboard
         environment:
             - NODE_ENV=development
+            - REACT_APP_VT_KEY=<insert VirusTotal API key here>
         depends_on: 
             - api
 
