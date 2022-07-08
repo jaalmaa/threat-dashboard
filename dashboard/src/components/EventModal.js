@@ -9,7 +9,7 @@ const EventModal = (props) => {
             <ModalBody>
                 <div className="modal-body">
                     <b>Credentials Used: </b>
-                    <div className="indicator">{ props.data.credentials }</div>
+                    <div>{ props.data.credentials }</div>
                         
                     <b>Command History:</b>
                     <div>{ props.data.commands.length ? props.data.commands.map((command, index) => <div className="indicator" key={index}>{ command }</div>) : <p>None</p> }</div>

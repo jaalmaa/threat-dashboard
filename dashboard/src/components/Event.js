@@ -21,7 +21,7 @@ class Event extends Component {
         const urls = this.props.session.url;
         const src_ip = this.props.session.src_ip;
         const hashes = this.props.session.shasum;
-        const credentials = this.props.session.credentials ? <div>{this.props.session.credentials.username}:{this.props.session.credentials.password}</div> : 'null';
+        const credentials = this.props.session.credentials ? <div>{<div className="credential">{this.props.session.credentials.username}</div>}:{<div className="credential">{this.props.session.credentials.password}</div>}</div> : 'null';
         const commands = this.props.session.commands ? this.props.session.commands
             .filter(command => { return command; })
             .map((command, index) => <div key={index}>{command}</div>) : <p>null</p>;

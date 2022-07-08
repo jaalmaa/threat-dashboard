@@ -7,7 +7,13 @@
     color: #B32000;
 }
 
-.indicator:hover {
+.credential {
+    font-family: monospace;
+    color: #B32000;
+    display: inline;
+}
+
+.indicator:hover, .credential:hover {
     font-family: monospace;
     color: black;
     font-weight: bolder;
