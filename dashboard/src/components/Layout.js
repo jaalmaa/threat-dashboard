@@ -56,9 +56,6 @@ class Layout extends Component {
                     <Route exact path='/dashboard'>
                         <Dashboard hp_data={this.state.hpfeed} aggregates={this.state.aggregates} />
                     </Route>
-                    {/* <Route path="/feed">
-                        <Feed hp_data={this.state.hpfeed} />
-                    </Route> */}
                 </Switch>
             </Router>
         )
