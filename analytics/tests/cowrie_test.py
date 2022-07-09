@@ -31,9 +31,10 @@ def test_signature_detections_on_test_data():
     headers = { 'Content-Type': 'application/json' }
     response = requests.post(url=url, data=json.dumps(COWRIE_INTERACTION_TEST_DATA), headers=headers)
     data = response.json()
+    print('data: ', data)
     expected_detections = [
         'T1059_004_unix_shell_cowrie', 
-        'T1078_001_default_accounts_cowrie', 
-        'T1078_004_local_accounts_cowrie'
+        'T1078_004_local_accounts_cowrie', 
     ]
+    print('expected: ', expected_detections)
     assert sorted(data['detections']) == sorted(expected_detections)
