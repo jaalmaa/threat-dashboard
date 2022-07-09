@@ -1,0 +1,26 @@
+@import '../stylesheets/variables';
+
+.page-container {
+    padding: 5em;
+}
+.page-title {
+    padding-bottom: 2.5em;
+}
+.page-body {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+.about-text {
+    text-align: left;
+    padding-bottom: 0.5em;
+}
+.links-section-container {
+    padding-top: 1em;
+}
+.icon:hover {
+    fill: $event-hover;
+}
+.copyright-footer {
+    padding-top: 1em;
+    font-size: 0.75em;
+}
