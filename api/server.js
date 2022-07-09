@@ -56,7 +56,6 @@ const getDBAndEmit = async sockets => {
         currentInteractionData = lastNInteractionData;
         const interactionDataWithDetections = await generateInteractionDataWithDetections(lastNInteractionData);
         sockets.emit("aggregates", getAggregates(allInteractionData));
-        //sockets.emit("hpfeed", currentInteractionData);
         sockets.emit("hpfeed", interactionDataWithDetections);
     };
 }
@@ -69,7 +68,6 @@ const generateInteractionDataWithDetections = async interactionData => {
         const detections = await getInteractionAnalysis(itemCopy);
         itemCopy.detections = detections;
         interactionDataToSend.push(itemCopy);
-        // console.log(interactionDataToSend); <-- This works, analysis results are present here.
     }));
     if (interactionDataToSend.length === interactionData.length) {
         return interactionDataToSend;
@@ -105,7 +103,6 @@ io.on('connection', socket => {
             console.log(data);
             socket.emit("hpfeed", data);
         });
-        //socket.emit("hpfeed", interactionData);
     });
     
     getAllInteractionsFromLast24Hours().then(allInteractionData => {
