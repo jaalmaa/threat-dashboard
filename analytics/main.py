@@ -1,7 +1,4 @@
-import json
-import os
 from flask import Flask, jsonify, request
-from flask_expects_json import expects_json
 import yara_analysis
 
 service = Flask(__name__)
@@ -18,11 +15,9 @@ def root():
 
 
 @service.post("/analyze")
-@expects_json(json.load(open(os.path.abspath('schemas/interaction.schema.json'))))
 def analyze():
     request_data = request.get_json()
-    interaction_data = request_data['honeypot_data']
-    detections = yara_analysis.analyze_interaction(interaction_data=str(interaction_data), ruleset = signature_ruleset)
+    detections = yara_analysis.analyze_interaction(interaction_data=str(request_data), ruleset = signature_ruleset)
     return jsonify({
         'detections': detections
     }), 200

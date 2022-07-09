@@ -7,7 +7,7 @@ rule T1078_004_local_accounts_cowrie {
         author = "jaalma"
 
     strings:
-        $source = "cowrie.sessions"     /* Matches on "sessions.cowrie" string within Cowrie honeypot interactions. */
+        $source = "cowrie"     /* Matches on "sessions.cowrie" string within Cowrie honeypot interactions. */
         $1 = "credentials"          /* Matches on credentials field being present within Cowrie honeypot interactions. */
     
     condition:
