@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav } from 'reactstrap';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import socketIOClient from 'socket.io-client';
 import Dashboard from './Dashboard';
 import About from './About';
@@ -36,18 +36,16 @@ class Layout extends Component {
             <Router>
                 <div className="navbar">
                     <Navbar className="navbar" light expand="md">
-                        <NavbarBrand href="/dashboard"><b>Threat Dashboard</b></NavbarBrand>
-                        <NavbarBrand href="/about"><b>About</b></NavbarBrand>
+                        <NavbarBrand href="/dashboard" className="navbrand"><b>Threatdash</b></NavbarBrand>
                         <Nav className="nav">
-                            {/* <NavItem>
-                                <Link className="navlink" to="/">Dashboard</Link>
+                            <NavItem>
+                                <Link className="navlink" to="/about">About</Link>
                             </NavItem>
-                            {/* <NavItem>
-                                <Link className="navlink" to="/feed">Feed</Link>
-                            </NavItem> */}
+                            <NavItem>
+                                <Link className="navlink" to="/dashboard">Dashboard</Link>
+                            </NavItem>
                         </Nav>
                     </Navbar>
-                    <hr />
                 </div>
                 <Switch>
                     <Route exact path={['/', '/about']}>
