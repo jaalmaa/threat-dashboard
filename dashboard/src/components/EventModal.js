@@ -31,7 +31,7 @@ class Hash extends Component {
 
         if (Object.keys(this.state.data).length) {
             return(
-                <span onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}><span className="indicator">{ hash }</span> <HashVT data={this.state.data} hash={hash}/></span>
+                <span><span className="indicator">{ hash }</span> <HashVT data={this.state.data} hash={hash}/></span>
             )
         }
 
@@ -74,14 +74,14 @@ class Url extends Component {
 
         if (Object.keys(this.state.data).length) {
             return(
-                <span className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ url } <UrlVT data={this.state.data} url={url}/></span>
+                <span><span className="indicator">{ url }</span> <UrlVT data={this.state.data} url={url}/></span>
             )
         }
 
         else {
 
             return(
-                <div className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ url }{this.state.hoverOver && <Button className="button" onClick={() => this.vt_query(url)}>VT Scan</Button>}</div>
+                <div className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}><span>{ url }{this.state.hoverOver && <Button className="button" onClick={() => this.vt_query(url)}>VT Scan</Button>}</span></div>
             )
 
         }

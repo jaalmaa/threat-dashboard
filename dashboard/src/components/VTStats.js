@@ -4,23 +4,33 @@ export class UrlVT extends Component {
 
     render() {
 
-        var url = this.props.url
-
-        if (url.startsWith('https://')) {
-            url = url.slice('https://'.length)
-        }
-        
-        else if (url.startsWith('http://')) {
-            url = url.slice('http://'.length)
+        if (this.props.data.error) {
+            return(
+                <span>URL not found</span>
+            )
         }
 
-        url = url.split("/")[0]
+        else {
 
-        var gui_link = "https://www.virustotal.com/gui/domain/" + url
+            var url = this.props.url
 
-        return(
-            <a href={gui_link}>VT: { this.props.data.data.attributes.last_analysis_stats.malicious } detections</a>
-        )
+            if (url.startsWith('https://')) {
+                url = url.slice('https://'.length)
+            }
+            
+            else if (url.startsWith('http://')) {
+                url = url.slice('http://'.length)
+            }
+
+            url = url.split("/")[0]
+
+            var gui_link = "https://www.virustotal.com/gui/domain/" + url
+
+            return(
+                <a href={gui_link}>VT: { this.props.data.data.attributes.last_analysis_stats.malicious } detections</a>
+            )
+
+        }
     }
 
 }
@@ -31,7 +41,7 @@ export class HashVT extends Component {
 
         if (this.props.data.error) {
             return(
-                <p>Hash not found</p>
+                <span>Hash not found</span>
             )
         }
 
