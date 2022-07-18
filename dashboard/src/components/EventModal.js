@@ -1,5 +1,6 @@
 import { React, useState, Component} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { UrlVT, HashVT } from './VTStats';
 import './EventModal.scss';
 
 class Hash extends Component {
@@ -22,16 +23,25 @@ class Hash extends Component {
     async vt_query(hash) {
         const response = await fetch("https://www.virustotal.com/api/v3/files/".concat(hash), {method: 'GET', headers: {Accept: 'application/json', 'x-apikey': process.env.REACT_APP_VT_KEY}});
         const json = await response.json();
-        console.log(json);
         this.setState({ data: json });
     }
     
     render() {
         const hash = this.props.hash;
 
-        return(
-            <div className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ hash }{this.state.hoverOver && <Button className="button" onClick={() => this.vt_query(hash)}>VT Scan</Button>}</div>
-        )
+        if (Object.keys(this.state.data).length) {
+            return(
+                <span onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}><span className="indicator">{ hash }</span> <HashVT data={this.state.data} hash={hash}/></span>
+            )
+        }
+
+        else {
+
+            return(
+                <div className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ hash }{this.state.hoverOver && <Button className="button" onClick={() => this.vt_query(hash)}>VT Scan</Button>}</div>
+            )
+
+            }
     }
 }
 
@@ -56,16 +66,25 @@ class Url extends Component {
         const b64_url = Buffer.from(url).toString('base64').replace(/={1,2}$/, '');
         const response = await fetch("https://www.virustotal.com/api/v3/urls/".concat(b64_url), {method: 'GET', headers: {Accept: 'application/json', 'x-apikey': process.env.REACT_APP_VT_KEY}});
         const json = await response.json();
-        console.log(json);
         this.setState({ data: json });
     }
     
     render() {
         const url = this.props.url;
 
-        return(
-            <div className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ url }{this.state.hoverOver && <Button className="button" onClick={() => this.vt_query(url)}>VT Scan</Button>}</div>
-        )
+        if (Object.keys(this.state.data).length) {
+            return(
+                <span className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ url } <UrlVT data={this.state.data} url={url}/></span>
+            )
+        }
+
+        else {
+
+            return(
+                <div className="indicator" onMouseOver={() => this.handleMouseOver()} onMouseOut={() => this.handleMouseOut()}>{ url }{this.state.hoverOver && <Button className="button" onClick={() => this.vt_query(url)}>VT Scan</Button>}</div>
+            )
+
+        }
     }
 }
 
