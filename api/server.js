@@ -15,7 +15,6 @@ const maxInteractionCount = 20;
 let currentInteractionData = [];
 
 const getAggregates = data => {
-    /*console.log(data);*/
     let total_attacks = data.length;
     console.log(total_attacks);
     let url_collections = data.map(event => event.url).filter(urls => urls.length); /* Forming array of arrays from attacks where URLs were seen */
@@ -55,25 +54,25 @@ const getDBAndEmit = async sockets => {
     let allInteractionData = await getAllInteractionsFromLast24Hours();
     if (!( JSON.stringify(lastNInteractionData) === JSON.stringify(currentInteractionData) )) {
         currentInteractionData = lastNInteractionData;
-        // const interactionDataWithDetections = await generateInteractionDataWithDetections(lastNInteractionData);
+        const interactionDataWithDetections = await generateInteractionDataWithDetections(lastNInteractionData);
         sockets.emit("aggregates", getAggregates(allInteractionData));
-        sockets.emit("hpfeed", currentInteractionData);
+        sockets.emit("hpfeed", interactionDataWithDetections);
     };
 }
 
-// use this function to enrich interaction data with detections. BROKEN ATM, NEEDS FIX.
-// const generateInteractionDataWithDetections = async interactionData => {
-//     const interactionDataToSend = [];
-//     await Promise.all(interactionData.map(async item => {
-//         let itemCopy = Object.assign({}, item);
-//         const detections = await getInteractionAnalysis(itemCopy);
-//         itemCopy.detections = detections;
-//         interactionDataToSend.push(itemCopy);
-//     }));
-//     if (interactionDataToSend.length === maxInteractionCount) {
-//         return interactionDataToSend;
-//     }
-// }
+// use this function to enrich interaction data with detections.
+const generateInteractionDataWithDetections = async interactionData => {
+    const interactionDataToSend = [];
+    await Promise.all(interactionData.map(async item => {
+        let itemCopy = Object.assign({}, item);
+        const detections = await getInteractionAnalysis(itemCopy);
+        itemCopy.detections = detections;
+        interactionDataToSend.push(itemCopy);
+    }));
+    if (interactionDataToSend.length === interactionData.length) {
+        return interactionDataToSend;
+    }
+}
 
 const checkInteractionEngineIsOnline = async () => {
     axios.get(`${interactionEngineURI}/`)
@@ -100,7 +99,10 @@ io.on('connection', socket => {
     console.log('New Client Connected:' + socket.id);
 
     getLastNInteractions(maxInteractionCount).then(interactionData => {
-        socket.emit("hpfeed", interactionData);
+        generateInteractionDataWithDetections(interactionData).then(data => {
+            console.log(data);
+            socket.emit("hpfeed", data);
+        });
     });
     
     getAllInteractionsFromLast24Hours().then(allInteractionData => {

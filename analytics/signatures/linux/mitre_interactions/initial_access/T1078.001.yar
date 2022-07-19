@@ -7,7 +7,7 @@ rule T1078_001_default_accounts_cowrie {
         author = "jaalma"
 
     strings:
-        $source = "cowrie.sessions"
+        $source = "cowrie"
         $s1 = "admin:admin"
         $s2 = "support:support"
 

@@ -7,7 +7,7 @@ rule T1059_004_unix_shell_cowrie {
         author = "jaalma"
 
     strings:
-        $source = "cowrie.sessions"
+        $source = "cowrie"
 
     condition:
         $source

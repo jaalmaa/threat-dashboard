@@ -7,7 +7,7 @@ rule T1059_006_python_cowrie {
         author = "jaalma"
 
     strings:
-        $source = "cowrie.sessions"
+        $source = "cowrie"
         $s1 = "python" // matches on python/python3 command within commands
 
     condition:
