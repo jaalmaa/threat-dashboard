@@ -1,7 +1,6 @@
 import React from 'react';
 import './About.scss'
 
-
 function AboutText() {
 
     /* Change the text here to alter the paragraph explaining the project. */
