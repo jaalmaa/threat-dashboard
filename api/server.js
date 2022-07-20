@@ -88,10 +88,33 @@ const checkInteractionEngineIsOnline = async () => {
 const getInteractionAnalysis = async interactionData => {
     interactionData._id = interactionData._id.toString();
     interactionData.startTime = interactionData.startTime.toString();
-    let res = await axios.post(`${interactionEngineURI}/analyze`, {
-        honeypot_data: interactionData
-    })
-    return res.data.detections;
+
+    if (!interactionData.detections) { 
+
+        if (!interactionData.endTime) {
+            return []; // Only provides analysis once session is completed to ensure all commands analysed
+        }
+
+        let creds = interactionData.credentials.username + ':' + interactionData.credentials.password;
+
+        let res = await axios.post(`${interactionEngineURI}/analyze`, {
+            honeypot_data: interactionData,
+            credentials: creds // Support simple YARA rules on credentials in form user:pass
+        })
+
+        hpfeed.update(
+            { "_id" : interactionData._id}, 
+            { $set: {"detections" : res.data.detections } },
+            { upsert: false }
+        );
+
+        return res.data.detections;
+    }
+
+    else {
+        return interactionData.detections;
+    }
+    
 }
 
 let interval;
@@ -100,7 +123,7 @@ io.on('connection', socket => {
 
     getLastNInteractions(maxInteractionCount).then(interactionData => {
         generateInteractionDataWithDetections(interactionData).then(data => {
-            console.log(data);
+            //console.log(data);
             socket.emit("hpfeed", data);
         });
     });
