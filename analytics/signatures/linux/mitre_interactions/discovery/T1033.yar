@@ -12,5 +12,5 @@ rule T1033_system_owner_user_discover_cowrie {
         $s2 = "whoami"
 
     condition:
-        $source and $s1
+        $source and ($s1 or $s2)
 }
