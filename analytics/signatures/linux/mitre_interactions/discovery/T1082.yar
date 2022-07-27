@@ -9,8 +9,10 @@ rule T1082_system_info_discovery_cowrie {
     strings:
         $source = "cowrie"
         $s1 = "cat /bin/echo" // Common technique to identify system architecture
-        $s2 = "cat /proc/uptime"
+        $s2 = /cat \/proc\/(uptime|cpuinfo)/
+        $s3 = "uname"
+        $s4 = /('| )free('| )/
 
     condition:
-        $source and $s1
+        $source and ($s1 or $s2 or $s3 or $s4)
 }
