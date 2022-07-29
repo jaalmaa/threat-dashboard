@@ -13,16 +13,17 @@ const hpfeed = db.get('sessiondata');
 const interactionEngineURI = process.env.INTERACTION_URI;
 const maxInteractionCount = 20;
 let currentInteractionData = [];
+let currentAggregates = {};
 
 const getAggregates = data => {
     let total_attacks = data.length;
-    console.log(total_attacks);
+    //console.log(total_attacks);
     let url_collections = data.map(event => event.url).filter(urls => urls.length); /* Forming array of arrays from attacks where URLs were seen */
     let total_urls = [].concat.apply([], url_collections).length /* Calculating total number of elements. Does not check if URL is unique or has been seen before */
-    console.log(total_urls);
+    //console.log(total_urls);
     let hash_collections = data.map(event => event.shasum).filter(hashes => hashes.length);
     let total_hashes = [].concat.apply([], hash_collections).filter(string => {return string !== '';}).length;
-    console.log(total_hashes);
+    //console.log(total_hashes);
     return {
         attacks: total_attacks,
         urls: total_urls,
@@ -44,7 +45,7 @@ const getAllInteractionsFromLast24Hours = async() => {
 }
 
 const getLastNInteractions = async interactionsCount => {
-    return await hpfeed.find({}, { sort: { _id: -1  }, limit: interactionsCount }, err => {
+    return await hpfeed.find({ commands: { $exists: true, $ne: [] } }, { sort: { _id: -1  }, limit: interactionsCount }, err => { // Filter returns only sessions where commands field is non-empty
         if (err) return "Error accessing database";
     });
 }
@@ -55,9 +56,15 @@ const getDBAndEmit = async sockets => {
     if (!( JSON.stringify(lastNInteractionData) === JSON.stringify(currentInteractionData) )) {
         currentInteractionData = lastNInteractionData;
         const interactionDataWithDetections = await generateInteractionDataWithDetections(lastNInteractionData);
-        sockets.emit("aggregates", getAggregates(allInteractionData));
         sockets.emit("hpfeed", interactionDataWithDetections);
     };
+
+    let lastAggregates = getAggregates(allInteractionData);
+
+    if (!( JSON.stringify(lastAggregates) === JSON.stringify(currentAggregates) )) { // Update aggregrates for all attacks including those with no commands
+        currentAggregates = lastAggregates;
+        sockets.emit("aggregates", currentAggregates);
+    }
 }
 
 // use this function to enrich interaction data with detections.
