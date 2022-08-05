@@ -1,0 +1,25 @@
+name: restart dashboard
+on:
+  push:
+    branches:
+      - master
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        script: |
+          cd threat-dashboard
+          sudo docker-compose stop
+          git pull origin master
+          sudo rm -r analytics/signatures/compiled/*
+          sudo docker-compose up --build --detach
