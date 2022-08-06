@@ -1,4 +1,4 @@
-rule TT1053_003_cron_cowrie {
+rule T1053_003_cron_cowrie {
 
     meta:
         data_source = "Cowrie"

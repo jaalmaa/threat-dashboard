@@ -9,7 +9,12 @@ rule T1105_ingress_tool_transfer_cowrie {
     strings:
         $source = "cowrie"
         $s1 = "scp -t" // ingress transfers only
+        $s2 = "curl"
+        $s3 = "wget"
+        $s4 = "ftpget"
+        $s5 = "tftp"
+        $s6 = "-c get"
 
     condition:
-        $source and $s1
+        $source and any of ($s1, $s2, $s3, $s4) or ($s5 and $s6)
 }

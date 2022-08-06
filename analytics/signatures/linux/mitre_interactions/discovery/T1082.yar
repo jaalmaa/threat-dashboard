@@ -12,7 +12,8 @@ rule T1082_system_info_discovery_cowrie {
         $s2 = /cat \/proc\/(uptime|cpuinfo)/
         $s3 = "uname"
         $s4 = /('| )free('| )/
+        $s5 = "/ip cloud print" // https://malwaremily.medium.com/honeypot-logs-a-botnets-search-for-mikrotik-routers-48e69e110e52
 
     condition:
-        $source and ($s1 or $s2 or $s3 or $s4)
+        $source and any of ($s1, $s2, $s3, $s4, $s5)
 }

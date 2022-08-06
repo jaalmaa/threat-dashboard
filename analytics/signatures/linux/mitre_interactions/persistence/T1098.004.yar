@@ -8,7 +8,7 @@ rule T1098_004_ssh_authorized_keys_cowrie {
 
     strings:
         $source = "cowrie"
-        $s1 = ".ssh/authorized_keys"
+        $s1 = "authorized_keys"
 
     condition:
         $source and $s1

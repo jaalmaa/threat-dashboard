@@ -11,7 +11,8 @@ rule T1078_001_default_accounts_cowrie {
         $s1 = "admin:admin"
         $s2 = "support:support"
         $s3 = "user:1" // Hive OS
+        $s4 = "root:root"
 
     condition:
-        $source and any of ($s1, $s2, $s3)
+        $source and any of ($s1, $s2, $s3, $s4)
 }
