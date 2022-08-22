@@ -9,7 +9,8 @@ rule T1496_resource_hijacking_cowrie {
     strings:
         $source = "cowrie"
         $s1 = "[Mm]iner" // attack seen searching for string perhaps to identify cryptomining process
+        $s2 = "c3pool" // known mining pool 
 
     condition:
-        $source and $s1
+        $source and ($s1 or $s2)
 }

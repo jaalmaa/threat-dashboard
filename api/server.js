@@ -17,13 +17,10 @@ let currentAggregates = {};
 
 const getAggregates = data => {
     let total_attacks = data.length;
-    //console.log(total_attacks);
     let url_collections = data.map(event => event.url).filter(urls => urls.length); /* Forming array of arrays from attacks where URLs were seen */
     let total_urls = [].concat.apply([], url_collections).length /* Calculating total number of elements. Does not check if URL is unique or has been seen before */
-    //console.log(total_urls);
     let hash_collections = data.map(event => event.shasum).filter(hashes => hashes.length);
     let total_hashes = [].concat.apply([], hash_collections).filter(string => {return string !== '';}).length;
-    //console.log(total_hashes);
     return {
         attacks: total_attacks,
         urls: total_urls,
@@ -124,13 +121,33 @@ const getInteractionAnalysis = async interactionData => {
     
 }
 
+// Finds entries for files uploaded without commands (ie SFTP) and submits for analysis
+const analyseUploadFiles = async() => {
+    let uploadFiles = await hpfeed.find({ fileAnalysed: false, "endTime": {"$exists": true, "$ne": ""}}, err => { 
+        if (err) return "Error accessing database";
+    });
+
+    await Promise.all(uploadFiles.map(async item => {
+        let itemCopy = Object.assign({}, item);
+        let res = await axios.post(`${interactionEngineURI}/analyze`, {
+            honeypot_data: itemCopy
+        });
+
+        hpfeed.update(
+            { "_id" : itemCopy._id}, 
+            { $set: {"fileAnalysed" : true } },
+            { upsert: false }
+        )
+    }));
+}
+
+
 let interval;
 io.on('connection', socket => {
     console.log('New Client Connected:' + socket.id);
 
     getLastNInteractions(maxInteractionCount).then(interactionData => {
         generateInteractionDataWithDetections(interactionData).then(data => {
-            //console.log(data);
             socket.emit("hpfeed", data);
         });
     });
@@ -138,6 +155,8 @@ io.on('connection', socket => {
     getAllInteractionsFromLast24Hours().then(allInteractionData => {
         socket.emit("aggregates", getAggregates(allInteractionData));
     });
+
+    analyseUploadFiles();
 
     if (interval) clearInterval(interval);
     interval = setInterval(() =>

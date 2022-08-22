@@ -13,7 +13,8 @@ rule T1082_system_info_discovery_cowrie {
         $s3 = "uname"
         $s4 = /('| )free('| )/
         $s5 = "/ip cloud print" // https://malwaremily.medium.com/honeypot-logs-a-botnets-search-for-mikrotik-routers-48e69e110e52
+        $s6 = "nvidia-smi" // related to GPU 
 
     condition:
-        $source and any of ($s1, $s2, $s3, $s4, $s5)
+        $source and any of ($s1, $s2, $s3, $s4, $s5, $s6)
 }

@@ -21,6 +21,7 @@ pyparsing==3.0.1
 pyrsistent==0.18.0
 pytest==6.2.5
 python-dateutil==2.8.2
+python-magic==0.4.27
 requests==2.26.0
 six==1.16.0
 toml==0.10.2

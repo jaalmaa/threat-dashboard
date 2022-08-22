@@ -2,7 +2,6 @@ import yara
 import os
 from pathlib import Path
 import gridfs
-import sys
 import tempfile
 
 SIGNATURES_DIRECTORY = os.path.abspath('./signatures')
@@ -16,11 +15,13 @@ def analyze_interaction(interaction_data: str, ruleset: list) -> list:
             signatures_triggered.append(str(match)[1:-1])
     return signatures_triggered
 
-def analyze_file(honeypot_file: gridfs.grid_file.GridOut, ruleset: list) -> int:
+def analyze_file(honeypot_file: gridfs.grid_file.GridOut, ruleset: list) -> list:
     signatures_triggered = []
     
+    data = honeypot_file.read()
     temp = tempfile.NamedTemporaryFile()
-    temp.write(honeypot_file.read())
+    temp.write(data)
+    temp.seek(0)
 
     for rule in ruleset:
         try:
