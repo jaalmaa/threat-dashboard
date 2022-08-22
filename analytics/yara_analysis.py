@@ -5,7 +5,6 @@ import gridfs
 import tempfile
 
 SIGNATURES_DIRECTORY = os.path.abspath('./signatures')
-COWRIE_FILE_DOWNLOADS = '/downloads' 
 
 def analyze_interaction(interaction_data: str, ruleset: list) -> list:
     signatures_triggered = []
