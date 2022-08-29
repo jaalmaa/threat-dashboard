@@ -39,5 +39,7 @@ services:
             - 5000:5000
         volumes:
             - ./analytics:/usr/src/analytics
+        environment:
+            - MONGO_IP=192.168.0.21
         depends_on:
             - api
