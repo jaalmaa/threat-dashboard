@@ -1,45 +1,41 @@
-version: '3.7'
+version: "3.7"
 
 services:
-    api:
-        image: api
-        build:
-            context: ./api
-        ports:
-            - 3001:3001
-        volumes:
-            - .:/api
-        environment:
-            - PORT=3001
-            - MONGO_URI=mongodb://192.168.0.21:27017/cowrie
-            - INTERACTION_URI=http://192.168.0.21:5000
-            - NODE_ENV=development
-    
-    dashboard:
-        image: dashboard
-        build:
-            context: ./dashboard
-            args:
-                REACT_APP_API_URI: "http://192.168.0.21:3001"
-        ports:
-            - 8080:3000
-        volumes:
-            - ./dashboard:/usr/src/dashboard
-        environment:
-            - NODE_ENV=development
-            - REACT_APP_VT_KEY=<insert VirusTotal API key here>
-        depends_on: 
-            - api
+  api:
+    image: api
+    build:
+      context: ./api
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/api
+    env_file:
+      - api.env
 
-    analytics:
-        image: analytics
-        build:
-            context: ./analytics
-        ports:
-            - 5000:5000
-        volumes:
-            - ./analytics:/usr/src/analytics
-        environment:
-            - MONGO_IP=192.168.0.21
-        depends_on:
-            - api
+  dashboard:
+    image: dashboard
+    build:
+      context: ./dashboard
+      args:
+        REACT_APP_API_URI: "http://192.168.0.21:3001"
+    ports:
+      - 8080:3000
+    volumes:
+      - ./dashboard:/usr/src/dashboard
+    env_file:
+      - dashboard.env
+    depends_on:
+      - api
+
+  analytics:
+    image: analytics
+    build:
+      context: ./analytics
+    ports:
+      - 5000:5000
+    volumes:
+      - ./analytics:/usr/src/analytics
+    env_file:
+      - analytics.env
+    depends_on:
+      - api
